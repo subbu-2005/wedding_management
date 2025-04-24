@@ -2,48 +2,47 @@
 "use client"
 
 import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { Modal, Button } from "react-bootstrap"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import pkFlag from "../assets/images/pk-flag.png"
 import onboardingImg from "../assets/images/onboarding.png"
-import "../styles/admin-auth.css"
+// import "../styles/admin-auth.css"
 
-const SignIn = () => {
+const AdminResetRequest = () => {
   const [phone, setPhone] = useState("+92")
   const [otp, setOtp] = useState("")
   const [showOtpModal, setShowOtpModal] = useState(false)
-  const { signIn, verifySignInOtp, loading } = useAuth()
+  const { requestAdminOtp, verifyAdminOtp, loading } = useAuth()
   const navigate = useNavigate()
 
   const handlePhoneSubmit = async (e) => {
     e.preventDefault()
-    const success = await signIn(phone)
+    const success = await requestAdminOtp(phone)
     if (success) setShowOtpModal(true)
   }
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault()
-    const success = await verifySignInOtp(phone, otp)
+    const success = await verifyAdminOtp(phone, otp)
     if (success) {
       setShowOtpModal(false)
-      navigate("/dashboard")
+      navigate("/admin/reset-password", { replace: true })
     }
   }
 
   return (
     <>
       <div className="main-container">
-        <div className="logo-onbaording" style={{ backgroundImage: `url(${onboardingImg})` }}>
+        <div className="logo-onboarding" style={{ backgroundImage: `url(${onboardingImg})` }}>
           <h1 className="logo">EazyWed</h1>
         </div>
-        <div className="sign-in-form col-6">
+        <div className="sign-in-form">
           <h4>Welcome to EazyWed</h4>
-          <form id="signin-form" onSubmit={handlePhoneSubmit}>
-            <h5>Login</h5>
-            <label htmlFor="phone">Contact Number *</label>
+          <form id="admin-reset-request-form" onSubmit={handlePhoneSubmit}>
+            <h5>Reset Password</h5>
             <div className="phone-area">
               <img src={pkFlag || "/placeholder.svg"} alt="Pakistan Flag" />
               <input
@@ -53,18 +52,17 @@ const SignIn = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
+                placeholder="Enter your phone number"
+                disabled={loading}
               />
-            </div>
-            <div className="redirect-to-sign-up pt-3">
-              <Link to="/signup">Want to register?</Link>
             </div>
             <div className="back-forth-buttons">
               <div className="back-button">
-                <Button type="button" onClick={() => navigate("/")}>
+                <Button type="button" onClick={() => navigate("/admin/login")} disabled={loading}>
                   Back
                 </Button>
               </div>
-              <div className="submit--continue-button">
+              <div className="submit-continue-button">
                 <Button type="submit" disabled={loading}>
                   {loading ? "Sending..." : "Continue"}
                 </Button>
@@ -83,11 +81,12 @@ const SignIn = () => {
             placeholder="Enter the OTP sent to your number"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
+            disabled={loading}
           />
           <Button className="verify-button" onClick={handleOtpSubmit} disabled={loading}>
             {loading ? "Verifying..." : "Verify"}
           </Button>
-          <Button className="cancel-button" onClick={() => setShowOtpModal(false)}>
+          <Button className="cancel-button" onClick={() => setShowOtpModal(false)} disabled={loading}>
             Cancel
           </Button>
         </Modal.Body>
@@ -98,4 +97,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default AdminResetRequest

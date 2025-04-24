@@ -9,24 +9,24 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import pkFlag from "../assets/images/pk-flag.png"
 import onboardingImg from "../assets/images/onboarding.png"
-import "../styles/admin-auth.css"
 
-const SignIn = () => {
+const SignUp = () => {
+  const [fullName, setFullName] = useState("")
   const [phone, setPhone] = useState("+92")
   const [otp, setOtp] = useState("")
   const [showOtpModal, setShowOtpModal] = useState(false)
-  const { signIn, verifySignInOtp, loading } = useAuth()
+  const { signUp, verifySignUpOtp, loading } = useAuth()
   const navigate = useNavigate()
 
-  const handlePhoneSubmit = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const success = await signIn(phone)
+    const success = await signUp(fullName, phone)
     if (success) setShowOtpModal(true)
   }
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault()
-    const success = await verifySignInOtp(phone, otp)
+    const success = await verifySignUpOtp(fullName, phone, otp)
     if (success) {
       setShowOtpModal(false)
       navigate("/dashboard")
@@ -41,8 +41,23 @@ const SignIn = () => {
         </div>
         <div className="sign-in-form col-6">
           <h4>Welcome to EazyWed</h4>
-          <form id="signin-form" onSubmit={handlePhoneSubmit}>
-            <h5>Login</h5>
+          <form id="signup-form" onSubmit={handleFormSubmit}>
+            <h5>Sign Up</h5>
+            <label htmlFor="name" className="pb-2">
+              Full Name *
+            </label>
+            <div className="name-area">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter Your Name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+                disabled={loading}
+              />
+            </div>
             <label htmlFor="phone">Contact Number *</label>
             <div className="phone-area">
               <img src={pkFlag || "/placeholder.svg"} alt="Pakistan Flag" />
@@ -53,14 +68,15 @@ const SignIn = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
-            <div className="redirect-to-sign-up pt-3">
-              <Link to="/signup">Want to register?</Link>
+            <div className="redirect-to-sign-in pt-3">
+              <Link to="/signin">Already have an account?</Link>
             </div>
             <div className="back-forth-buttons">
               <div className="back-button">
-                <Button type="button" onClick={() => navigate("/")}>
+                <Button type="button" onClick={() => navigate("/")} disabled={loading}>
                   Back
                 </Button>
               </div>
@@ -83,11 +99,12 @@ const SignIn = () => {
             placeholder="Enter the OTP sent to your number"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
+            disabled={loading}
           />
           <Button className="verify-button" onClick={handleOtpSubmit} disabled={loading}>
             {loading ? "Verifying..." : "Verify"}
           </Button>
-          <Button className="cancel-button" onClick={() => setShowOtpModal(false)}>
+          <Button className="cancel-button" onClick={() => setShowOtpModal(false)} disabled={loading}>
             Cancel
           </Button>
         </Modal.Body>
@@ -98,4 +115,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignUp
