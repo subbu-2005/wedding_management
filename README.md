@@ -6,14 +6,54 @@ M. Hammad Ur Rehman (L1F21BSCS0021)
 Amir Sohail (L1F21BSCS0999)
 Rana M. Umar Nazir (L1F21BSCS0196)
 
-Features
+Features and Sub-Features
+1. Vendor Booking and Management
 
-Vendor Booking and Management: Browse, compare, and book wedding vendors directly through the platform.
-Personalized Recommendations: Receive tailored vendor suggestions based on preferences, location, and budget.
-Real-Time Budget Tracking: Manage and monitor your wedding budget with dynamic updates.
-Customizable Digital Invitations: Design and send personalized wedding invitations using a variety of templates.
-User and Vendor Profiles: Manage wedding plans or showcase services with dedicated profiles.
-Feedback and Review System: Rate and review vendors to help future users make informed decisions.
+Vendor Search and Filtering: Browse vendors by category, location, price, and ratings using intuitive search and filter tools.
+Vendor Comparison: Compare vendor services, pricing, and reviews side-by-side to make informed decisions.
+Booking System: Securely book vendors directly through the platform with integrated payment options.
+Vendor Communication: Communicate with vendors via in-app messaging for seamless coordination.
+
+2. Personalized Recommendations
+
+AI-Driven Suggestions: Receive vendor recommendations tailored to user preferences, budget, and location using a recommendation engine.
+Preference-Based Matching: Input wedding style, theme, and requirements to get curated vendor lists.
+Dynamic Updates: Recommendations adapt as users update their preferences or budget.
+
+3. Real-Time Budget Tracking
+
+Budget Planner: Set and manage a wedding budget with categorized expense tracking (e.g., venue, catering, decor).
+Real-Time Updates: Automatically update the budget as bookings are made or expenses are added.
+Cost Estimation: View estimated costs for services based on vendor quotes and user selections.
+Alerts and Insights: Receive alerts for overspending and insights for cost-saving opportunities.
+
+4. Customizable Digital Invitations
+
+Template Library: Choose from a variety of customizable wedding invitation templates.
+Card Editor: Use a drag-and-drop editor to personalize text, images, and design elements.
+Digital Delivery: Send invitations via email or WhatsApp with RSVP tracking.
+Preview and Share: Preview designs in real-time and share with guests seamlessly.
+
+5. User and Vendor Profiles
+
+User Profiles: Manage wedding plans, track bookings, and save favorite vendors in a personalized dashboard.
+Vendor Profiles: Showcase services, portfolios, pricing, and availability for potential clients.
+Profile Customization: Update profile details, including photos, descriptions, and contact information.
+Verification System: Ensure trust with verified vendor profiles and user accounts.
+
+6. Feedback and Review System
+
+Vendor Reviews: Rate and write reviews for vendors based on service quality and experience.
+Review Moderation: Admin-moderated reviews to ensure authenticity and relevance.
+Rating System: View aggregated vendor ratings to aid decision-making.
+Feedback Loop: Vendors can respond to reviews to address concerns or thank clients.
+
+7. AI-Customized Chatbot Assistance
+
+24/7 Support: Access an AI-powered chatbot for instant assistance with platform navigation and queries.
+Personalized Guidance: Get tailored advice on vendor selection, budget planning, and invitation design.
+FAQ Integration: Quickly resolve common questions with pre-programmed responses.
+Vendor Inquiry Support: Facilitate communication by drafting messages or queries to vendors.
 
 Technology Stack
 
@@ -118,10 +158,10 @@ EazyWed/
 │   │   │   │   ├── Slider.jsx
 │   │   │   │   ├── VendorCard.css
 │   │   │   │   ├── VendorCard.jsx
+│   │   │   │   ├── Chatbot.css
+│   │   │   │   ├── Chatbot.jsx
 │   │   │   ├── AboutUs.css
 │   │   │   ├── AboutUs.jsx
-│   │   │   ├── Chatbot.css
-│   │   │   ├── Chatbot.jsx
 │   │   │   ├── Contact.css
 │   │   │   ├── ContactUs.jsx
 │   │   │   ├── Deals.css
@@ -164,13 +204,14 @@ EazyWed/
 │   ├── package-lock.json
 │   ├── package.json
 │   └── vite.config.js
+
 Installation and Setup
 To set up EazyWed locally, follow these steps:
 Prerequisites
 
-Node.js (version 14.x or higher recommended)
-MongoDB (locally installed or a cloud instance like MongoDB Atlas)
-Git (for cloning the repository)
+Node.js: Version 14.x or higher recommended.
+MongoDB: Locally installed or a cloud instance like MongoDB Atlas.
+Git: For cloning the repository.
 
 Cloning the Repository
 Clone the EazyWed repository from GitHub:
@@ -240,7 +281,7 @@ In the second terminal, navigate to EazyWed/eazywed and run:npm run dev
 
 
 
-Alternatively, you can use a tool like concurrently to run both servers with a single command:
+Alternatively, use concurrently to run both servers with a single command:
 
 Install concurrently globally (or add it to your project):npm install -g concurrently
 
@@ -254,6 +295,7 @@ Usage
 Open your browser and navigate to http://localhost:5173 to access the EazyWed frontend.
 Register as a user or vendor to explore features like booking vendors, creating digital invitations, or managing budgets.
 Admin features are accessible via the admin dashboard (requires admin credentials).
+Use the AI-customized chatbot (available on the platform) for assistance with navigation, vendor selection, or general queries.
 
 Contributing
 Contributions are welcome! To contribute:
