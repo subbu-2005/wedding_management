@@ -12,12 +12,12 @@ export const generateWhatsAppLink = (phone, message) => {
   // If phone starts with 0, replace with country code (default to Pakistan +92)
   let formattedPhone = cleanPhone;
   if (cleanPhone.startsWith('0')) {
-    formattedPhone = `92${cleanPhone.substring(1)}`;
+    formattedPhone = `91${cleanPhone.substring(1)}`;
   }
   
   // Handle cases where phone might already have country code
-  if (!formattedPhone.startsWith('92') && !formattedPhone.startsWith('+92')) {
-    formattedPhone = `92${formattedPhone}`;
+  if (!formattedPhone.startsWith('92') && !formattedPhone.startsWith('+91')) {
+    formattedPhone = `91${formattedPhone}`;
   }
   
   // Remove any + symbol

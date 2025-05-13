@@ -14,7 +14,7 @@ import onboardingImg from "../assets/images/onboarding.png"
 // import "../styles/admin-auth.css"
 
 const AdminLogin = () => {
-  const [identifier, setIdentifier] = useState("+92")
+  const [identifier, setIdentifier] = useState("+91")
   const [password, setPassword] = useState("")
   const { adminLogin, loading } = useAuth()
   const navigate = useNavigate()

@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Phone number is required"],
       unique: true,
-      match: [/^\+923[0-4][0-9]{8}$/, "Phone must be a valid Pakistani number starting with +923"],
+      match: [/^\+91[6-9][0-9]{9}$/, "Phone must be a valid Pakistani number starting with +91"],
     },
     username: {
       type: String,
@@ -46,8 +46,8 @@ const userSchema = new mongoose.Schema(
         default: "canApply",
       },
       submittedAt: { type: Date },
-      phone_whatsapp: { type: String, match: [/^\+923[0-4][0-9]{8}$/, "Valid Pakistani number"] },
-      whatsapp_number: { type: String, match: [/^\+923[0-4][0-9]{8}$/, "Valid Pakistani number"] },
+      phone_whatsapp: { type: String, match: [/^\+91[6-9][0-9]{9}$/, "Valid Pakistani number"] },
+      whatsapp_number: { type: String, match: [/^\+91[6-9][0-9]{9}$/, "Valid Pakistani number"] },
       category: {
         type: String,
         enum: [
@@ -76,8 +76,8 @@ const userSchema = new mongoose.Schema(
       lastRejectionTime: { type: Date }, // For cooldown after multiple rejections
     },
     vendorDetails: {
-      phone_whatsapp: { type: String, match: [/^\+923[0-4][0-9]{8}$/, "Valid Pakistani number"] },
-      whatsapp_number: { type: String, match: [/^\+923[0-4][0-9]{8}$/, "Valid Pakistani number"] },
+      phone_whatsapp: { type: String, match: [/^\+91[6-9][0-9]{9}$/, "Valid Pakistani number"] },
+      whatsapp_number: { type: String, match: [/^\+91[6-9][0-9]{9}$/, "Valid Pakistani number"] },
       category: {
         type: String,
         enum: [
